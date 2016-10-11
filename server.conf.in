@@ -52,11 +52,15 @@ listen = 127.0.0.1:8080
 ; source TURN server which is fully supported can be found at
 ; https://code.google.com/p/rfc5766-turn-server/.
 ;turnURIs = turn:turnserver:port?transport=udp
+turnURIs = turn:130.211.104.52:3478?transport=udp
+
 ; Shared secret authentication for TURN user generation if the TURN server is
 ; protected (which it should be).
 ; See http://tools.ietf.org/html/draft-uberti-behave-turn-rest-00 for details.
 ; A supported TURN server is https://code.google.com/p/rfc5766-turn-server/.
-;turnSecret = the-default-turn-shared-secret-do-not-keep
+turnSecret = 531cf9a7c8e2c0636a2ecfd78a7da0e4974f2bb2a7cc97994e1b464eff53cdbf
+
+
 ; Enable renegotiation support. Set to true to tell clients that they can
 ; renegotiate peer connections when required. Firefox support is not complete,
 ; so do not enable if you want compatibility with Firefox clients.

@@ -1,0 +1,5 @@
+1) Build container
+
+	docker build -t webrtc .
+
+2) 

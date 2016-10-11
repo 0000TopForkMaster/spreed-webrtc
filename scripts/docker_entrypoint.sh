@@ -2,12 +2,15 @@
 set -e
 
 randomhex() {
-	local size="$1"
-	if [ -z "${size}" ]; then
-		size=32
-	fi
-	local val=$(hexdump -e '4/4 "%08x"' -n${size} /dev/random)
-	echo ${val}
+	echo "531cf9a7c8e2c0636a2ecfd78a7da0e4974f2bb2a7cc97994e1b464eff53cdbf"
+
+# TODO: does not work on Compute Engine
+#	local size="$1"
+#	if [ -z "${size}" ]; then
+#		size=32
+#	fi
+#	local val=$(hexdump -e '4/4 "%08x"' -n${size} /dev/random)
+#	echo ${val}
 }
 
 if [ "$NEWCERT" = "1" -o ! -s /srv/cert.pem ]; then
@@ -16,7 +19,7 @@ if [ "$NEWCERT" = "1" -o ! -s /srv/cert.pem ]; then
 	rm -f /srv/cert.pem
 	openssl ecparam -genkey -name secp384r1 -out /srv/privkey.pem
 	openssl req -new -x509 -key /srv/privkey.pem \
-				-out /srv/cert.pem -days 3650 \
+				-out /srv/cert.pem -days 36500 \
 				-subj /CN=spreed-webrtc \
 				-config /etc/ssl/openssl.cnf \
 				-sha256 -extensions v3_req
@@ -42,5 +45,5 @@ fi
 echo "Server secrets:"
 cat /srv/secrets.conf
 
-echo "Staring Spreed WebRTC server ..."
-exec /srv/spreed-webrtc/spreed-webrtc-server "$@"
+#echo "Staring Spreed WebRTC server ..."
+#exec /srv/spreed-webrtc/spreed-webrtc-server "$@"
