@@ -35,7 +35,7 @@ listen = 127.0.0.1:8080
 
 [app]
 ; HTML page title
-;title = Spreed WebRTC
+title = freisport.net
 ; Version string to use for static resources. This defaults to the server
 ; version and should only be changed when you use your own way to invalidate
 ; long cached static resources.
@@ -65,43 +65,54 @@ turnSecret = 531cf9a7c8e2c0636a2ecfd78a7da0e4974f2bb2a7cc97994e1b464eff53cdbf
 ; renegotiate peer connections when required. Firefox support is not complete,
 ; so do not enable if you want compatibility with Firefox clients.
 ;renegotiation = false
+
 ; Session secret to use for session id generator. 32 or 64 bytes of random data
 ; are recommented (hex encoded). A warning will be logged if hex decode fails.
 ; You can generate a secret easily with "xxd -ps -l 32 -c 32 /dev/random".
-sessionSecret = the-default-secret-do-not-keep-me
+sessionSecret = b46e134d69457e621ea2ce5527391972b96d921020f4639b0b56980f96f17208
+
 ; Encryption secret protecting the data in generated server side tokens. Use
 ; 16, 24, or 32 bytes (hex encoded) to select AES-128, AES-192, or AES-256.
 ; When you change the encryption secret, stored authentications, sessions and
 ; contacts become invalid. A warning will be logged if hex decode fails. You
 ; can generate a secret easily with "xxd -ps -l 32 -c 32 /dev/random".
-encryptionSecret = tne-default-encryption-block-key
+encryptionSecret = c8e5cf8d5881e7933947c08c912389177717d6b213e7180601a7ae3153585efb
+
 ; Full path to a text file containig client tokens which a user needs to enter
 ; when accessing the web client. Each line in this file represents a valid
 ; token.
 ;tokenFile = tokens.txt
+
 ; The name of a global room. If enabled it should be kept secret. Users in that
 ; room are visible in all other rooms.
 ;globalRoom = global
+
 ; The default room is the room at the root URL of the servers base address and
 ; all users will join this room if enabled. If it is disabled then a room join
 ; form will be shown instead.
 ;defaultRoomEnabled = true
+
 ; Whether a user account is required to join a room. This only has an effect
 ; if user accounts are enabled. Optional, defaults to false.
 ;authorizeRoomJoin = false
+
 ; Whether a user account is required to create a room. This only has an effect
 ; if user accounts are enabled. Optional, defaults to false.
 ;authorizeRoomCreation = false
+
 ; Wether the pipelines API should be enabled. Optional, defaults to false.
 ;pipelinesEnabled = false
+
 ; Server token is a public random string which is used to enhance security of
 ; server generated security tokens. When the serverToken is changed all existing
 ; nonces become invalid. Use 32 or 64 characters (eg. 16 or 32 byte hex).
-serverToken = i-did-not-change-the-public-token-boo
+serverToken = 09cf339d08bcccda8a9af9da7cd8fda311b302aa1e97f37b346af8165af29828
+
 ; The server realm is part of the validation chain of tokens and nonces and is
 ; added as suffix to server created user ids if user creation is enabled. When
 ; the realm is changed, all existing tokens and nonces become invalid.
 serverRealm = local
+
 ; Full path to an extra templates directory. Templates in this directory ending
 ; with .html will be parsed on startup and can be used to fill the supported
 ; extra-* template slots. If the extra folder has a sub folder "static", the
@@ -149,7 +160,7 @@ serverRealm = local
 
 [users]
 ; Set to true to enable user functionality.
-enabled = false
+enabled = true
 ; Set users authorization mode.
 ; sharedsecret:
 ;   Validates the userid with a HMAC authentication secret.
