@@ -1,0 +1,19 @@
+[Unit]
+Description=WebRTC container
+After=docker.service
+Requires=docker.service
+
+[Service]
+Environment=NAME=freisport-webrtc
+Environment=VERSION=latest
+Restart=always
+ExecStartPre=-/usr/bin/docker rm ${NAME}
+ExecStart=/usr/bin/docker run \
+	--name=${NAME} \
+	-p 80:80 \
+	-p 443:443 \
+	webrtc
+ExecStop=-/usr/bin/docker stop ${NAME}
+
+[Install]
+WantedBy=default.target
