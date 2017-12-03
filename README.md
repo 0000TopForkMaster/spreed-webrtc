@@ -160,21 +160,22 @@ docker run --rm --name my-spreed-webrtc -p 8080:8080 -p 8443:8443 \
 
 ### Chrome
 
-Chromium-based browsers (e.g. Google Chrome) require the [Spreed.ME screen sharing
-extension](https://www.spreed.me/extension/).
+Chrome should work out of the box.
 
 ### Firefox
 
-Screensharing with Firefox >= 52 should work out of the box.
-When using Firefox 36 – 51 you must append the domain being used to the allowed
-domains to access your screen. You do this by navigating to `about:config`, search
-for 'media.getusermedia.screensharing.allowed_domains', and append the domain
+Screen sharing has been supported since Firefox 36.
+Before Firefox 52, you must append the domain being used to the allowed domains
+to access your screen. You do this by navigating to `about:config`, search for
+`media.getusermedia.screensharing.allowed_domains`, and append the domain
 to the list of strings. You can edit the field simply by double clicking on it.
 Ensure that you follow the syntax rules of the field. If you are using an `ip:port`
 url, simply append `ip` to the list. Also ensure that you are using `https`,
 otherwise permission will be denied to share your screen. You do not need to restart
 or reload in order for it to take affect.
 
+The modification to `media.getusermedia.screensharing.allowed_domains` can also be done with an addon.
+See (SkyWay-ScreenShare)[https://github.com/nttcom/SkyWay-ScreenShare] for an example.
 
 ## Contributing
 
