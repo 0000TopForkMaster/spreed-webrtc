@@ -19,43 +19,43 @@ msgstr ""
 "Generated-By: Babel 1.3\n"
 
 msgid "Standard view"
-msgstr ""
+msgstr "일반 화면"
 
 msgid "Large view"
-msgstr ""
+msgstr "큰 화면"
 
 msgid "Kiosk view"
-msgstr ""
+msgstr "키오스크 화면"
 
 msgid "Auditorium"
-msgstr ""
+msgstr "컨퍼런스 화면"
 
 msgid "Start chat"
 msgstr "대화시작"
 
 msgid "Start video call"
-msgstr "화상회의 시작"
+msgstr "화상대화 시작"
 
 msgid "Start audio conference"
 msgstr "음성회의 시작"
 
 msgid "No one else here"
-msgstr ""
+msgstr "아무도 없음"
 
 msgid "Take"
-msgstr ""
+msgstr "촬영"
 
 msgid "Retake"
-msgstr ""
+msgstr "재촬영"
 
 msgid "Cancel"
 msgstr "취소"
 
 msgid "Set as Profile Picture"
-msgstr ""
+msgstr "프로필 이미지로 사용"
 
 msgid "Take picture"
-msgstr "사진 찍음"
+msgstr "사진 촬영"
 
 #, fuzzy
 msgid "Upload picture"
@@ -69,23 +69,23 @@ msgid "Picture"
 msgstr "사용자 사진"
 
 msgid "The file couldn't be read."
-msgstr ""
+msgstr "파일을 읽을 수 없습니다"
 
 msgid "The file is not an image."
-msgstr ""
+msgstr "이미지가 아닙니다"
 
 #, python-format
 msgid "The file is too large. Max. %d MB."
-msgstr ""
+msgstr "파일 크기가 %d MB를 초과했습니다"
 
 msgid "Select file"
-msgstr ""
+msgstr "파일 선택"
 
 msgid "Chat sessions"
 msgstr "대화 세션"
 
 msgid "Room chat"
-msgstr "대화 방"
+msgstr "대화방"
 
 msgid "Peer to peer"
 msgstr "일대일"
@@ -98,7 +98,7 @@ msgid "Upload files"
 msgstr "다운로드실패"
 
 msgid "Share my location"
-msgstr ""
+msgstr "내 위치 공유"
 
 #, fuzzy
 msgid "Clear chat"
@@ -117,45 +117,45 @@ msgid "Send"
 msgstr "전송"
 
 msgid "Accept"
-msgstr ""
+msgstr "승인"
 
 msgid "Reject"
 msgstr "거부"
 
 msgid "You have no contacts."
-msgstr ""
+msgstr "연락처가 비어 있습니다"
 
 msgid ""
 "To add new contacts, join a room and create a contact add request by "
 "clicking on the star icon next to a user entry."
-msgstr ""
+msgstr "연락처를 추가하려면 대화창에 접속 후 사용자 엔트리 옆의 별표를 클릭하세요"
 
 msgid "Edit contact"
-msgstr ""
+msgstr "연락처 수정"
 
 msgid "Edit"
-msgstr ""
+msgstr "수정"
 
 msgid "Name"
 msgstr "이름"
 
 msgid "Remove"
-msgstr ""
+msgstr "삭제"
 
 msgid "Refresh"
-msgstr ""
+msgstr "새로고침"
 
 msgid "Save"
-msgstr ""
+msgstr "저장"
 
 msgid "Close"
 msgstr "닫음"
 
 msgid "File sharing"
-msgstr "회일 공유"
+msgstr "파일 공유"
 
 msgid "File is no longer available"
-msgstr "화일이 유효하지 않습니다"
+msgstr "파일이 유효하지 않습니다"
 
 msgid "Download"
 msgstr "다운로드"
@@ -170,13 +170,13 @@ msgid "Retry"
 msgstr "재시도"
 
 msgid "Download failed."
-msgstr "다운로드실패"
+msgstr "다운로드 실패"
 
 msgid "Share a YouTube video"
-msgstr ""
+msgstr "유튜브 비디오 공유"
 
 msgid "Share a file as presentation"
-msgstr ""
+msgstr "프레젠테이션 공유"
 
 msgid "Share your screen"
 msgstr "화면 공유하기"
@@ -185,7 +185,7 @@ msgid "Chat"
 msgstr "대화"
 
 msgid "Contacts"
-msgstr ""
+msgstr "연락처"
 
 msgid "Mute microphone"
 msgstr "음성제거"
@@ -197,10 +197,10 @@ msgid "Settings"
 msgstr "설정"
 
 msgid "Loading presentation ..."
-msgstr ""
+msgstr "프레젠테이션 로딩중 ..."
 
 msgid "Please upload a document"
-msgstr ""
+msgstr "문서를 업로드하세요"
 
 msgid ""
 "Documents are shared with everyone in this call. The supported file types"
