@@ -1,0 +1,7 @@
+1) Build container
+
+	docker build -t webrtc .
+
+2) Run container
+
+	docker run --name freisport-webrtc -d -p 80:80 -p 443:443 webrtc
