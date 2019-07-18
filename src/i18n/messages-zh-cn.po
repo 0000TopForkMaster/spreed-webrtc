@@ -11,12 +11,13 @@ msgstr ""
 "POT-Creation-Date: 2016-02-17 14:15+0100\n"
 "PO-Revision-Date: 2014-05-21 09:54+0800\n"
 "Last-Translator: Michael P.\n"
+"Language: zh_CN\n"
 "Language-Team: Curt Frisemo <curt.frisemo@spreed.com>\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Generated-By: Babel 2.7.0\n"
 
 msgid "Standard view"
 msgstr "标准视图"
@@ -57,16 +58,14 @@ msgstr "设置为头像"
 msgid "Take picture"
 msgstr "拍照"
 
-#, fuzzy
 msgid "Upload picture"
-msgstr "您的图片"
+msgstr "上传图片"
 
 msgid "Waiting for camera"
 msgstr "等待启动摄像头"
 
-#, fuzzy
 msgid "Picture"
-msgstr "您的图片"
+msgstr "图片"
 
 msgid "The file couldn't be read."
 msgstr "文件读取失败"
@@ -93,16 +92,14 @@ msgstr "P2P"
 msgid "Close chat"
 msgstr "关闭聊天"
 
-#, fuzzy
 msgid "Upload files"
-msgstr "下载失败"
+msgstr "上传文件"
 
 msgid "Share my location"
 msgstr "分享位置"
 
-#, fuzzy
 msgid "Clear chat"
-msgstr "开始聊天"
+msgstr "清空"
 
 msgid "is typing..."
 msgstr "正在输入..."
@@ -243,14 +240,12 @@ msgstr "屏幕共享设置"
 msgid "Fit screen."
 msgstr "适合屏幕"
 
-#, fuzzy
 msgid "Share screen"
 msgstr "共享您的屏幕"
 
 msgid "Please select what to share."
 msgstr "请选择分享内容"
 
-#, fuzzy
 msgid "Screen"
 msgstr "适合屏幕"
 
@@ -269,11 +264,10 @@ msgstr "分享单个窗口"
 msgid ""
 "Share all windows of a application. This can leak content behind windows "
 "when windows get moved. Click share to select the application."
-msgstr "分享应用得所有窗口"
+msgstr "分享所有窗口"
 
-#, fuzzy
 msgid "Share"
-msgstr "停止分享"
+msgstr "分享"
 
 msgid "OK"
 msgstr "确定"
@@ -360,9 +354,8 @@ msgstr "系统默认房间"
 msgid "Set alternative room to join at start."
 msgstr "重设初始默认房间"
 
-#, fuzzy
 msgid "Notifications"
-msgstr "桌面提醒"
+msgstr "提醒"
 
 msgid "Desktop notification"
 msgstr "桌面提醒"
@@ -379,9 +372,8 @@ msgstr "启用"
 msgid "Sounds for incoming messages"
 msgstr "消息提醒声音"
 
-#, fuzzy
 msgid "Ring on incoming calls"
-msgstr "来电"
+msgstr "来电响铃"
 
 msgid "Sounds for users in current room"
 msgstr "房间新进用户声音"
@@ -407,7 +399,6 @@ msgstr "最大视频帧速率"
 msgid "auto"
 msgstr "自动"
 
-#, fuzzy
 msgid "Send stereo audio"
 msgstr "立体声"
 
@@ -451,9 +442,8 @@ msgstr "你的ID仍然会被记录-点击登出上面按钮来删除ID"
 msgid "Room link"
 msgstr "会议室链接"
 
-#, fuzzy
 msgid "Invite by Email"
-msgstr "电子邮件共享"
+msgstr "电子邮件邀请"
 
 msgid "Invite with Facebook"
 msgstr "通过facebook邀请"
@@ -541,9 +531,8 @@ msgstr "请输入会议室名字"
 msgid "Random room name"
 msgstr "随机名字"
 
-#, fuzzy
 msgid "Enter room"
-msgstr "当前会议室"
+msgstr "进入会议室"
 
 msgid ""
 "Enter the name of an existing room. You can create new rooms when you are"
@@ -660,15 +649,12 @@ msgstr " 拒绝了您的呼叫。"
 msgid " does not pick up."
 msgstr " 无人接听。"
 
-#, fuzzy
 msgid " tried to call you"
 msgstr " 曾呼叫您。"
 
-#, fuzzy
 msgid " called you"
 msgstr " 曾与您通话。"
 
-#, fuzzy
 msgid "Your browser is not supported. Please upgrade to a current version."
 msgstr "您的浏览器不支持文件传输"
 
@@ -737,9 +723,8 @@ msgstr "使用浏览器语言"
 msgid "Meet with me here:"
 msgstr "我们这里见："
 
-#, fuzzy
 msgid "Room name"
-msgstr "您的名字"
+msgstr "会议名字"
 
 msgid ""
 "The request contains an invalid parameter value. Please check the URL of "
