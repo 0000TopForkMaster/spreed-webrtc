@@ -106,6 +106,23 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 		}
 	})();
 
+	var getDisplayUserMedia = (function() {
+
+		if (navigator.getDisplayMedia) {
+			return function(constraints, success, error){
+				constraints = {video: true};
+				navigator.getDisplayMedia(constraints).then(success).catch(error);
+			}
+		} else if (navigator.mediaDevices.getDisplayMedia) {
+			return function(constraints, success, error){
+				constraints = {video: true};
+				navigator.mediaDevices.getDisplayMedia(constraints).then(success).catch(error);
+			}
+		} else {
+			return getUserMedia;
+		}
+	})();
+
 	var stopUserMediaStream = (function() {
 		return function(stream) {
 			if (stream && stream.getTracks) {
@@ -263,17 +280,15 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 	UserMedia.getUserMedia = getUserMedia;
 	UserMedia.stopUserMediaStream = stopUserMediaStream;
 
-	UserMedia.prototype.doGetUserMedia = function(currentcall, mediaConstraints) {
+	UserMedia.prototype.doGetUserMedia = function(currentcall, mediaConstraints, isDisplay) {
 
 		if (!mediaConstraints) {
 			mediaConstraints = currentcall.mediaConstraints;
 		}
-
-		return this.doGetUserMediaWithConstraints(mediaConstraints);
-
+		return this.doGetUserMediaWithConstraints(mediaConstraints, isDisplay);
 	};
 
-	UserMedia.prototype.doGetUserMediaWithConstraints = function(mediaConstraints) {
+	UserMedia.prototype.doGetUserMediaWithConstraints = function(mediaConstraints, isDisplay) {
 
 		if (!mediaConstraints) {
 			mediaConstraints = this.mediaConstraints;
@@ -310,7 +325,13 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 		try {
 			console.log('Requesting access to local media with mediaConstraints:\n' +
 				'  \'' + JSON.stringify(constraints) + '\'', constraints);
-			getUserMedia(constraints, _.bind(this.onUserMediaSuccess, this), _.bind(this.onUserMediaError, this));
+			if(isDisplay){
+				getDisplayUserMedia(constraints, _.bind(this.onUserMediaSuccess, this), _.bind(this.onUserMediaError, this));
+			}
+			else{
+				getUserMedia(constraints, _.bind(this.onUserMediaSuccess, this), _.bind(this.onUserMediaError, this));
+			}
+			 	
 			this.started = true;
 			return true;
 		} catch (e) {

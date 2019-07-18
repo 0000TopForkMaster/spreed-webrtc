@@ -57,8 +57,8 @@ define(['underscore', 'text!partials/screensharedialogff.html', 'webrtc.adapter'
 			// Chrome support.
 			if ($window.webrtcDetectedBrowser === "chrome") {
 
-				if ($window.webrtcDetectedVersion >= 32 &&
-					$window.webrtcDetectedVersion < 37) {
+				if ($window.webrtcDetectedVersion >= 32 ){//&&
+					//$window.webrtcDetectedVersion < 37) {
 					// Support for flag based developer screen sharing came in Chrome 32.
 					// It was removed in Chrome 37 in favour of chrome.chooseDesktopMedia
 					// https://code.google.com/p/chromium/issues/detail?id=347641
@@ -74,11 +74,11 @@ define(['underscore', 'text!partials/screensharedialogff.html', 'webrtc.adapter'
 						d.resolve(opts);
 						return d.promise;
 					};
-				} else if ($window.webrtcDetectedVersion >= 37) {
+				} //else if ($window.webrtcDetectedVersion >= 37) {
 					// We need a extension to support screen sharing. See
 					// https://developer.chrome.com/extensions/desktopCapture#method-chooseDesktopMedia
 					// for details.
-				}
+				//}
 
 				if (chromeExtension.available) {
 

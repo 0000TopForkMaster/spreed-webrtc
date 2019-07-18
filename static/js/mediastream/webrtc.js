@@ -689,7 +689,7 @@ function($, _, PeerCall, PeerConference, PeerXfer, PeerScreenshare, UserMedia, u
 		var usermedia = new UserMedia({
 			noAudio: true
 		});
-		var ok = usermedia.doGetUserMedia(null, PeerScreenshare.getCaptureMediaConstraints(this, options));
+		var ok = usermedia.doGetUserMedia(null, PeerScreenshare.getCaptureMediaConstraints(this, options), true);
 		if (ok) {
 			this.e.one("done", function() {
 				usermedia.stop();
