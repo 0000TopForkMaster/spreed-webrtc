@@ -556,10 +556,13 @@ function($, _, PeerCall, PeerConference, PeerXfer, PeerScreenshare, UserMedia, u
 		}
 
 		this.e.triggerHandler("error", ["Failed to access camera/microphone.", "failed_getusermedia"]);
+		return true;
+		/* add by fan
 		if (call.id) {
 			this.doHangup("usermedia", call.id);
 		}
 		return false;
+		*/
 	};
 
 	WebRTC.prototype._doAutoStartCall = function(call) {
