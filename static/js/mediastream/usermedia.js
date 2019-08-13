@@ -88,7 +88,7 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 	// Adapter to support navigator.mediaDevices API.
 	// http://w3c.github.io/mediacapture-main/getusermedia.html#mediadevices
 	var getUserMedia = (function() {
-		if (window.webrtcDetectedBrowser === "firefox"&& window.webrtcDetectedVersion >= 38) {
+		//if (window.webrtcDetectedBrowser === "firefox"&& window.webrtcDetectedVersion >= 38) {
 			console.info("Enabled mediaDevices adapter ...");
 			return function(constraints, success, error) {
 				// Full constraints syntax with plain values and ideal-algorithm supported in FF38+.
@@ -100,10 +100,11 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 				console.log("Constraints for mediaDevices", c);
 				window.navigator.mediaDevices.getUserMedia(c).then(success).catch(error);
 			}
-		} else {
+	//	} 
+		/*else {
 			// Use existing adapter.
-			return navigator.mediaDevices.getUserMedia;
-		}
+			return window.getUserMedia;
+		}*/
 	})();
 
 	var getDisplayUserMedia = (function() {
