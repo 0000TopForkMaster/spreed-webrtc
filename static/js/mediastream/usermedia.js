@@ -102,7 +102,7 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 			}
 		} else {
 			// Use existing adapter.
-			return window.getUserMedia;
+			return navigator.mediaDevices.getUserMedia;
 		}
 	})();
 
