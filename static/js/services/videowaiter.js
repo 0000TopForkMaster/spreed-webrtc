@@ -37,13 +37,13 @@ define(["underscore"], function(_) {
 				return;
 			}
 			var videoTracks = stream && stream.getVideoTracks() || [];
-			//console.log("wait for video", videoTracks.length, video.currentTime, video.videoHeight, video);
+			console.log("wait for video", this.count, videoTracks.length, video.currentTime, video.videoHeight, video);
 			if (videoTracks.length === 0 && this.count >= 10) {
 				cb(false, video, stream);
 			} else if (video.currentTime > 0 && video.videoHeight > 0) {
 				cb(true, video, stream);
 			} else {
-				if (videoTracks.length > 0 && this.count >= 10) {
+				if (videoTracks.length > 0 && this.count >= 50) {
 					var videoTrack = videoTracks[0];
 					if (videoTrack.enabled === true && videoTrack.muted === true) {
 						cb(false, video, stream);
