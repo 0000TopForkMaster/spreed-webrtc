@@ -120,7 +120,7 @@ define(["mediastream/webrtc", "webrtc.adapter"], function() {
 
 		// SCTP does not work properly in Chrome 31 when used with other Chrome versions.
 		// Thus we require Chrome 32 for now. Firefox 28 can interop with Chrome 32 data channels - yay.
-		var supported = ($window.webrtcDetectedBrowser === "chrome" && $window.webrtcDetectedVersion >= 32 && !$window.webrtcDetectedAndroid) || ($window.webrtcDetectedBrowser === "firefox" && $window.webrtcDetectedVersion >= 28 && !$window.webrtcDetectedAndroid);
+		var supported = ($window.webrtcDetectedBrowser === "chrome" && $window.webrtcDetectedVersion >= 32 ) || ($window.webrtcDetectedBrowser === "firefox" && $window.webrtcDetectedVersion >= 28 );
 		if (!supported) {
 			console.warn("Browser support for binary file transfers not found.");
 		}
