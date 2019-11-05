@@ -27,6 +27,7 @@ require.config({
 		"text": "libs/require/text",
 		"jquery": 'libs/jquery/jquery.min',
 		"underscore": 'libs/lodash.min', // alternative to underscore
+		'markdown': 'libs/markdown-it.min',
 		"modernizr": 'libs/modernizr',
 		'webrtc.adapter': 'libs/webrtc.adapter',
 		'angular': 'libs/angular/angular.min',
@@ -53,7 +54,6 @@ require.config({
 		'sjcl': 'libs/sjcl',
 		'bootstrap-file-input': 'libs/bootstrap.file-input',
 		'webfont': 'libs/webfont',
-
 		'partials': '../partials',
 		'sounds': '../sounds',
 		'translation': '../translation'
@@ -64,6 +64,9 @@ require.config({
 		},
 		'underscore': {
 			exports: '_'
+		},
+		'markdown': {
+			exports: 'markdown'
 		},
 		'angular': {
 			deps: ['jquery'],
@@ -190,7 +193,8 @@ if (Object.create) {
 		'angular',
 		'require',
 		'webfont',
-		'base'], function($, _, angular, require, webfont) {
+		'base',
+	   ], function($, _, angular, require, webfont) {
 
 		// Load web fonts.
 		webfont.load({

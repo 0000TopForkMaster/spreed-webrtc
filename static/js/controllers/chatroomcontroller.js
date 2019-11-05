@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['jquery', 'underscore', 'moment', 'text!partials/fileinfo.html', 'text!partials/contactrequest.html', 'text!partials/geolocation.html', 'text!partials/picturehover.html'], function($, _, moment, templateFileInfo, templateContactRequest, templateGeolocation, templatePictureHover) {
+define(['jquery', 'underscore', 'moment', 'markdown', 'text!partials/fileinfo.html', 'text!partials/contactrequest.html', 'text!partials/geolocation.html', 'text!partials/picturehover.html'], function($, _, moment, markdown, templateFileInfo, templateContactRequest, templateGeolocation, templatePictureHover) {
 
 	// ChatroomController
 	return ["$scope", "$element", "$window", "safeMessage", "safeDisplayName", "$compile", "$filter", "translation", "mediaStream", function($scope, $element, $window, safeMessage, safeDisplayName, $compile, $filter, translation, mediaStream) {
@@ -29,6 +29,7 @@ define(['jquery', 'underscore', 'moment', 'text!partials/fileinfo.html', 'text!p
 		$scope.inputElement = $element.find(".input");
 		$scope.bodyElement = $element.find(".chatbody");
 		$scope.menuElement = $element.find(".chatmenu");
+		$scope.bMarkdown = false;
 		var lastSender = null;
 		var lastDate = null;
 		var lastMessageContainer = null;
@@ -176,6 +177,10 @@ define(['jquery', 'underscore', 'moment', 'text!partials/fileinfo.html', 'text!p
 
 		});
 
+		$scope.markdown = function() {
+			$scope.bMarkdown = !$scope.bMarkdown;
+		}
+
 		$scope.reset = function() {
 			$scope.input = "";
 			isTyping = false;
@@ -187,6 +192,17 @@ define(['jquery', 'underscore', 'moment', 'text!partials/fileinfo.html', 'text!p
 		};
 
 		$scope.submit = function() {
+			if($scope.bMarkdown)
+			{
+
+			/*	$scope.input = markdown().use(markdown_math,{
+					inlineOpen: '$',
+					inlineClose: '$',
+					blockOpen: '$$',
+					blockClose: '$$'}).render($scope.input);
+					*/
+				$scope.input = markdown().render($scope.input);
+			}
 			var input = $scope.input;
 			if (input) {
 				scrollAfterInput = true;
@@ -351,32 +367,64 @@ define(['jquery', 'underscore', 'moment', 'text!partials/fileinfo.html', 'text!p
 				showTitleAndPicture(from, msg, is_self);
 			}
 
-			var strMessage = s.join(" ");
-
-			if (!is_new_message) {
-				var element = this.append(strMessage, nodes);
-				if (element) {
-					return element;
+			var strMessage = s.join(" ");	
+			var element = null;
+			do{
+				if (!is_new_message) {
+					element = this.append(strMessage, nodes);
+					if (element) {
+						break;
+						//return element;
+					}
+					showTitleAndPicture();
 				}
-				showTitleAndPicture();
-			}
-
-			if (is_self) {
-				msg.extra_css += "is_self";
-			} else {
-				msg.extra_css += "is_remote";
-			}
-			if (timestamp) {
-				var ts = $('<div class="timestamp"/>');
-				ts.text(moment(timestamp).format("H:mm"));
-				if (nodes) {
-					nodes = nodes.add(ts);
+	
+				if (is_self) {
+					msg.extra_css += "is_self";
 				} else {
-					nodes = ts;
+					msg.extra_css += "is_remote";
 				}
-			}
-			return $scope.display(strMessage, nodes, msg.extra_css, msg.title, msg.picture);
+				if (timestamp) {
+					var ts = $('<div class="timestamp"/>');
+					ts.text(moment(timestamp).format("H:mm"));
+					if (nodes) {
+						nodes = nodes.add(ts);
+					} else {
+						nodes = ts;
+					}
+				}
+				element = $scope.display(strMessage, nodes, msg.extra_css, msg.title, msg.picture);
 
+			}while(0);
+			
+		//	if (document.body.querySelector('math')) {
+			if (strMessage.indexOf("$") != -1) {
+				if (!window.MathJax) {
+					window.MathJax = {
+					  tex: {
+						inlineMath: [['$', '$'], ['\\(', '\\)']]
+					  }
+					};
+					var script = document.createElement('script');
+				    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js';
+				    document.head.appendChild(script);
+				  }
+				MathJax.texReset();
+      			MathJax.typesetClear();
+      			MathJax.typesetPromise().catch(function (err) {
+					//
+					//  If there was an internal error, put the message into the output instead
+					//
+					//output.innerHTML = '';
+					//output.appendChild(document.createElement('pre')).appendChild(document.createTextNode(err.message));
+				  })
+				  .then(function() {
+					//
+					//  Error or not, re-enable the render button
+					//
+				  });
+			}
+			return element;
 		};
 
 		$scope.$on("seen", function() {
