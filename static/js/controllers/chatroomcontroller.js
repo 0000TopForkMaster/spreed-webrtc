@@ -40,6 +40,46 @@ define(['jquery', 'underscore', 'moment', 'markdown', 'text!partials/fileinfo.ht
 		var p2p = false;
 		var scrollAfterInput = false;
 
+		function MsgQueue(size) {
+			var items = [];
+			var curpeekpos = 0;
+			this.enqueue = function(element) {
+				if(items.length > size) {
+					this.dequeue();
+				}
+				for(var i = 0, len = items.length; i < len; i++){
+					if(items[i] == element){
+						items.splice(i,1);
+					}
+				}
+				items.push(element);
+				curpeekpos = items.length;
+			}
+			this.dequeue = function() {
+				return items.shift();
+			}
+			this.front = function() {
+				return items[0];
+			}
+			this.isEmpty = function() {
+				return items.length == 0;
+			}
+			this.size = function() {
+				return items.length;
+			}
+			this.print = function() {
+				return items.toString();
+			}
+			this.peeklast = function() {
+				curpeekpos = Math.min(Math.max(0, --curpeekpos), items.length - 1);
+				return items[curpeekpos];
+			}
+			this.peeknext = function() {
+				curpeekpos = Math.min(Math.max(0, ++curpeekpos), items.length - 1);
+				return items[curpeekpos];
+			}
+		}
+		var msgs = new MsgQueue(20);
 		// Mark seen on several events.
 		$scope.bodyElement.on("mouseover mouseenter touchstart", _.debounce(function(event) {
 			$scope.$parent.seen();
@@ -153,6 +193,33 @@ define(['jquery', 'underscore', 'moment', 'markdown', 'text!partials/fileinfo.ht
 			}
 		});
 
+		
+		// Bind to inputElement keydown event
+		$scope.inputElement.on("keydown", function(e) {	 
+			var UP = 38;
+			var DOWN = 40;
+			var ENTER = 13; 
+			if(e.altKey && e.keyCode == ENTER) {
+				$scope.input = $scope.input + "\n";
+				$scope.$apply();
+			}
+			//enter
+			else if(e.keyCode == ENTER) {
+				$scope.submit();
+				event.preventDefault();
+			}
+			else if(e.keyCode == UP) {
+				$scope.input = msgs.peeklast();
+				$scope.$apply();
+			}
+			else if(e.keyCode == DOWN) {
+				$scope.input = msgs.peeknext();
+				$scope.$apply();
+			}
+		});
+		
+
+
 		$scope.$watch("input", function(newvalue) {
 
 			$scope.$parent.seen();
@@ -192,15 +259,9 @@ define(['jquery', 'underscore', 'moment', 'markdown', 'text!partials/fileinfo.ht
 		};
 
 		$scope.submit = function() {
+			msgs.enqueue($scope.input);
 			if($scope.bMarkdown)
 			{
-
-			/*	$scope.input = markdown().use(markdown_math,{
-					inlineOpen: '$',
-					inlineClose: '$',
-					blockOpen: '$$',
-					blockClose: '$$'}).render($scope.input);
-					*/
 				$scope.input = markdown().render($scope.input);
 			}
 			var input = $scope.input;
