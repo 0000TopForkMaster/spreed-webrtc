@@ -26,7 +26,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/channelling"
 
 	"github.com/gorilla/mux"
 )

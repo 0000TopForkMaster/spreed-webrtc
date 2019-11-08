@@ -29,7 +29,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/strukturag/spreed-webrtc/go/randomstring"
+	"go/randomstring"
 
 	"github.com/gorilla/securecookie"
 )

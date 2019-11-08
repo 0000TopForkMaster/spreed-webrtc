@@ -26,7 +26,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/channelling"
 )
 
 type Token struct {

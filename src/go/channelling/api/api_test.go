@@ -28,8 +28,8 @@ import (
 
 	"github.com/gorilla/securecookie"
 
-	"github.com/strukturag/spreed-webrtc/go/buffercache"
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/buffercache"
+	"go/channelling"
 )
 
 type fakeClient struct {

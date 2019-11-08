@@ -26,7 +26,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/channelling"
 )
 
 type Stat struct {

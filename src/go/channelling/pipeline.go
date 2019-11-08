@@ -29,7 +29,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/strukturag/spreed-webrtc/go/buffercache"
+	"go/buffercache"
 )
 
 type PipelineFeedLine struct {

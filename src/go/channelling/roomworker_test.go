@@ -24,7 +24,7 @@ package channelling
 import (
 	"testing"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/channelling"
 )
 
 const (

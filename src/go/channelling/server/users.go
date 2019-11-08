@@ -42,7 +42,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/channelling"
 
 	"github.com/longsleep/pkac"
 	"github.com/satori/go.uuid"

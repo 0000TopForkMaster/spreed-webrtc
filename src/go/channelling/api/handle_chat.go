@@ -25,7 +25,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/channelling"
 )
 
 func (api *channellingAPI) HandleChat(session *channelling.Session, chat *channelling.DataChat) {

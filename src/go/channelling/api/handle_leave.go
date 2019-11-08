@@ -22,7 +22,7 @@
 package api
 
 import (
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/channelling"
 )
 
 func (api *channellingAPI) HandleLeave(session *channelling.Session) error {

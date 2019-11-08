@@ -40,10 +40,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
-	"github.com/strukturag/spreed-webrtc/go/channelling/api"
-	"github.com/strukturag/spreed-webrtc/go/channelling/server"
-	"github.com/strukturag/spreed-webrtc/go/natsconnection"
+	"go/channelling"
+	"go/channelling/api"
+	"go/channelling/server"
+	"go/natsconnection"
 
 	"github.com/gorilla/mux"
 	"github.com/strukturag/httputils"

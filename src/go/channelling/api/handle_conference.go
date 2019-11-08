@@ -24,7 +24,7 @@ package api
 import (
 	"log"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/channelling"
 )
 
 func (api *channellingAPI) HandleConference(session *channelling.Session, conference *channelling.DataConference) {

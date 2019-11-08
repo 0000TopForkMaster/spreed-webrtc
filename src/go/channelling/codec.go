@@ -27,7 +27,7 @@ import (
 	"errors"
 	"log"
 
-	"github.com/strukturag/spreed-webrtc/go/buffercache"
+	"go/buffercache"
 )
 
 type IncomingDecoder interface {

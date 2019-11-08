@@ -30,7 +30,7 @@ import (
 
 	"github.com/nats-io/nats"
 
-	"github.com/strukturag/spreed-webrtc/go/natsconnection"
+	"go/natsconnection"
 )
 
 const (

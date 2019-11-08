@@ -25,7 +25,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/strukturag/spreed-webrtc/go/randomstring"
+	"go/randomstring"
 )
 
 type Room struct {

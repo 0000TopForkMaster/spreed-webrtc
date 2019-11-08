@@ -22,15 +22,22 @@
 package api
 
 import (
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"log"
+
+	"go/channelling"
 )
 
-func (api *channellingAPI) HandleUsers(session *channelling.Session) (sessions *channelling.DataSessions, err error) {
-	if session.Hello {
-		sessions = &channelling.DataSessions{Type: "Users", Users: api.RoomStatusManager.RoomUsers(session)}
-	} else {
-		err = channelling.NewDataError("not_in_room", "Cannot list users without a current room")
+func (api *channellingAPI) HandleAuthentication(session *channelling.Session, st *channelling.SessionToken) (*channelling.DataSelf, error) {
+	if err := api.SessionManager.Authenticate(session, st, ""); err != nil {
+		log.Println("Authentication failed", err, st.Userid, st.Nonce)
+		return nil, err
 	}
 
-	return
+	log.Println("Authentication success", session.Userid())
+	self, err := api.HandleSelf(session)
+	if err == nil {
+		session.BroadcastStatus()
+	}
+
+	return self, err
 }

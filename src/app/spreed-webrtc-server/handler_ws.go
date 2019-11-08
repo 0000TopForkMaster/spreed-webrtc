@@ -25,8 +25,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
-	"github.com/strukturag/spreed-webrtc/go/channelling/server"
+	"go/channelling"
+	"go/channelling/server"
 
 	"github.com/gorilla/websocket"
 )

@@ -24,7 +24,7 @@ package channelling
 import (
 	"log"
 
-	"github.com/strukturag/spreed-webrtc/go/buffercache"
+	"go/buffercache"
 )
 
 type Sender interface {
