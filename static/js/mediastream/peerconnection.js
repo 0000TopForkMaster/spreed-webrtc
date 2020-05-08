@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['jquery', 'underscore', 'webrtc.adapter'], function($, _) {
+define(['jquery', 'underscore', 'webrtc-adapter'], function($, _) {
 
 	var count = 0;
 	var dataChannelDefaultLabel = "default";

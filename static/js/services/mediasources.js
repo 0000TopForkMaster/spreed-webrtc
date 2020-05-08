@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['jquery', 'underscore', 'webrtc.adapter'], function($, _, adapter) {
+define(['jquery', 'underscore', 'webrtc-adapter'], function($, _, adapter) {
 
 	return ["$window", "mediaDevices", function($window, mediaDevices) {
 

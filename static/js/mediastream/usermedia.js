@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webrtc.adapter'], function($, _, AudioContext, DummyStream) {
+define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webrtc-adapter'], function($, _, AudioContext, DummyStream, adapter) {
 
 	// Create AudioContext singleton, if supported.
 	var context = AudioContext ? new AudioContext() : null;
@@ -596,7 +596,8 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 	UserMedia.prototype.attachMediaStream = function(video) {
 
 		if (this.localStream && DummyStream.not(this.localStream)) {
-			window.attachMediaStream(video, this.localStream);
+			//window.attachMediaStream(video, this.localStream);
+			video.srcObject = this.localStream;
 		}
 
 	};

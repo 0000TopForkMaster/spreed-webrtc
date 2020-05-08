@@ -27,9 +27,9 @@ define([
 	'sjcl',
 	'modernizr',
 	'mediastream/tokens',
-	'webrtc.adapter'
+	'webrtc-adapter'
 
-], function($, _, uaparser, sjcl, Modernizr, tokens) {
+], function($, _, uaparser, sjcl, Modernizr, tokens, adapter) {
 
 	return ["globalContext", "connector", "api", "webrtc", "appData", "$route", "$location", "$window", "visibility", "alertify", "$http", "safeApply", "$timeout", "$sce", "localStorage", "continueConnector", "restURL", function(context, connector, api, webrtc, appData, $route, $location, $window, visibility, alertify, $http, safeApply, $timeout, $sce, localStorage, continueConnector, restURL) {
 
@@ -46,7 +46,7 @@ define([
 
 		// Apply configuration details.
 		webrtc.settings.renegotiation = context.Cfg.Renegotiation && true;
-		if (webrtc.settings.renegotiation && $window.webrtcDetectedBrowser !== "chrome") {
+		if (webrtc.settings.renegotiation && adapter.browserDetails.browser !== "chrome") {
 			console.warn("Disable renegotiation in anything but Chrome for now.");
 			webrtc.settings.renegotiation = false;
 		}
