@@ -470,10 +470,10 @@ msgid "Hangup"
 msgstr "挂断"
 
 msgid "In call with"
-msgstr "正在和**通话"
+msgstr "通话对象"
 
 msgid "Conference with"
-msgstr "和**会议通话"
+msgstr "与会对象"
 
 msgid "Your are offline"
 msgstr "您不在线"
@@ -659,10 +659,10 @@ msgid "Your browser is not supported. Please upgrade to a current version."
 msgstr "您的浏览器不支持文件传输"
 
 msgid "Chat with"
-msgstr "与**聊天"
+msgstr "聊天对象"
 
 msgid "Message from "
-msgstr "来自于**的信息"
+msgstr "您有新的消息，来自于"
 
 #, python-format
 msgid "You are now in room %s ..."
