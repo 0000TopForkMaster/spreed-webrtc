@@ -213,7 +213,8 @@ define(['jquery', 'underscore', 'mediastream/utils', 'mediastream/peerconnection
 	};
 
 	PeerCall.prototype.setRemoteSdp = function(sessionDescription) {
-
+		
+/*
 		var params = this.sdpParams;
 		sessionDescription.sdp = utils.maybeSetOpusOptions(sessionDescription.sdp, params);
 		sessionDescription.sdp = utils.maybePreferAudioSendCodec(sessionDescription.sdp, params);
@@ -223,7 +224,7 @@ define(['jquery', 'underscore', 'mediastream/utils', 'mediastream/peerconnection
 		sessionDescription.sdp = utils.maybeSetVideoSendInitialBitRate(sessionDescription.sdp, params);
 		// Apply workarounds.
 		sessionDescription.sdp = utils.fixRemote(sessionDescription.sdp, params);
-
+*/
 	};
 
 	PeerCall.prototype.onIceCandidate = function(event) {
