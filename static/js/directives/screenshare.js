@@ -288,7 +288,7 @@ define(['jquery', 'underscore', 'text!partials/screenshare.html', 'text!partials
 							break;
 						default:
 							alertify.dialog.alert(translation._("Failed to start screen sharing (%s).", error.name));
-							break
+							break;
 						}
 					}
 				});

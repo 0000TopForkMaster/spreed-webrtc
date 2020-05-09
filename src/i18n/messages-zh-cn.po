@@ -656,7 +656,7 @@ msgid " called you"
 msgstr " 曾与您通话。"
 
 msgid "Your browser is not supported. Please upgrade to a current version."
-msgstr "您的浏览器不支持文件传输"
+msgstr "请升级浏览器版本"
 
 msgid "Chat with"
 msgstr "聊天对象"
