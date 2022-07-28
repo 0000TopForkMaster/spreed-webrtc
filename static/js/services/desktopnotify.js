@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['jquery', 'underscore', 'desktop-notify', 'webrtc.adapter'], function($, _, notify) {
+define(['jquery', 'underscore', 'desktop-notify', 'webrtc-adapter'], function($, _, notify) {
 
 	return ["$window", function($window) {
 

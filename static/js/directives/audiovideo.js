@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['jquery', 'underscore', 'text!partials/audiovideo.html', 'text!partials/audiovideopeer.html', 'bigscreen', 'webrtc.adapter'], function($, _, template, templatePeer, BigScreen, adapter) {
+define(['jquery', 'underscore', 'text!partials/audiovideo.html', 'text!partials/audiovideopeer.html', 'bigscreen', 'webrtc-adapter'], function($, _, template, templatePeer, BigScreen) {
 
 	return ["$window", "$compile", "$filter", "mediaStream", "safeApply", "desktopNotify", "buddyData", "videoWaiter", "videoLayout", "animationFrame", "$timeout", "dummyStream", function($window, $compile, $filter, mediaStream, safeApply, desktopNotify, buddyData, videoWaiter, videoLayout, animationFrame, $timeout, DummyStream) {
 
@@ -147,7 +147,7 @@ define(['jquery', 'underscore', 'text!partials/audiovideo.html', 'text!partials/
 							//$window.attachMediaStream(video, stream);
 							video.srcObject = stream;
 							// Waiter callbacks also count as connected, as browser support (FireFox 25) is not setting state changes properly.
-							videoWaiter.wait(video, stream, function(withvideo, retriggered) {
+							videoWaiter.wait(video, stream, function(withvideo) {
 								if (scope.destroyed) {
 									console.log("Abort wait for video on destroyed scope.");
 									return;
@@ -164,9 +164,7 @@ define(['jquery', 'underscore', 'text!partials/audiovideo.html', 'text!partials/
 										$scope.onlyaudio = true;
 									});
 								}
-								if (!retriggered) {
-									scope.$emit("active", currentcall);
-								}
+								scope.$emit("active", currentcall);
 								$scope.redraw();
 							}, function() {
 								if (scope.destroyed) {

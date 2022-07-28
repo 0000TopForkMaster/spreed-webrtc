@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(["jquery", "underscore", "webrtc.adapter"], function($, _) {
+define(["jquery", "underscore", "webrtc-adapter"], function($, _) {
 
 	// fileUpload
 	return ["fileData", "fileTransfer", "safeApply", "alertify", "translation", function(fileData, fileTransfer, safeApply, alertify, translation) {

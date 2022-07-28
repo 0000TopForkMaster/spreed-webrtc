@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['webrtc.adapter'], function() {
+define(['webrtc-adapter'], function() {
 
 	// mediaDevices
 	return ["$window", function($window) {

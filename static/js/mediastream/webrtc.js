@@ -33,7 +33,8 @@ define([
 	'mediastream/peerscreenshare',
 	'mediastream/usermedia',
 	'mediastream/utils',
-	'mediastream/tokens'],
+	'mediastream/tokens',
+	'webrtc-adapter'],
 
 function($, _, PeerCall, PeerConference, PeerXfer, PeerScreenshare, UserMedia, utils, tokens) {
 
@@ -460,8 +461,8 @@ function($, _, PeerCall, PeerConference, PeerXfer, PeerScreenshare, UserMedia, u
 
 	};
 
-	WebRTC.prototype.createCall = function(id, from, to, outgoing) {
-		var call = new PeerCall(this, id, from, to, outgoing);
+	WebRTC.prototype.createCall = function(id, from, to) {
+		var call = new PeerCall(this, id, from, to);
 		call.e.on("connectionStateChange", _.bind(function(event, iceConnectionState, currentcall) {
 			this.onConnectionStateChange(iceConnectionState, currentcall);
 		}, this));
@@ -483,6 +484,7 @@ function($, _, PeerCall, PeerConference, PeerXfer, PeerScreenshare, UserMedia, u
 		}, this));
 		call.e.on("connectionStateChange", _.bind(function(event, state, currentcall) {
 			switch (state) {
+			case "disconnected":
 			case "failed":
 				this.conference.markDisconnected(currentcall.id);
 				break;
@@ -554,10 +556,13 @@ function($, _, PeerCall, PeerConference, PeerXfer, PeerScreenshare, UserMedia, u
 		}
 
 		this.e.triggerHandler("error", ["Failed to access camera/microphone.", "failed_getusermedia"]);
+		return true;
+		/* add by fan
 		if (call.id) {
 			this.doHangup("usermedia", call.id);
 		}
 		return false;
+		*/
 	};
 
 	WebRTC.prototype._doAutoStartCall = function(call) {
@@ -575,7 +580,7 @@ function($, _, PeerCall, PeerConference, PeerXfer, PeerScreenshare, UserMedia, u
 	};
 
 	WebRTC.prototype.doCall = function(id, autocall) {
-		var call = this.createCall(id, null, id, true);
+		var call = this.createCall(id, null, id);
 		call.setInitiate(true);
 		var count = this.conference.getCallsCount();
 		if (!this.conference.addOutgoing(id, call)) {
@@ -687,7 +692,7 @@ function($, _, PeerCall, PeerConference, PeerXfer, PeerScreenshare, UserMedia, u
 		var usermedia = new UserMedia({
 			noAudio: true
 		});
-		var ok = usermedia.doGetUserMedia(null, PeerScreenshare.getCaptureMediaConstraints(this, options));
+		var ok = usermedia.doGetUserMedia(null, PeerScreenshare.getCaptureMediaConstraints(this, options), true);
 		if (ok) {
 			this.e.one("done", function() {
 				usermedia.stop();

@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['angular', 'jquery', 'underscore', 'moment', 'text!partials/fileinfo.html', 'text!partials/contactrequest.html', 'text!partials/geolocation.html', 'text!partials/picturehover.html'], function(angular, $, _, moment, templateFileInfo, templateContactRequest, templateGeolocation, templatePictureHover) {
+define(['jquery', 'underscore', 'moment', 'markdown', 'text!partials/fileinfo.html', 'text!partials/contactrequest.html', 'text!partials/geolocation.html', 'text!partials/picturehover.html'], function($, _, moment, markdown, templateFileInfo, templateContactRequest, templateGeolocation, templatePictureHover) {
 
 	// ChatroomController
 	return ["$scope", "$element", "$window", "safeMessage", "safeDisplayName", "$compile", "$filter", "translation", "mediaStream", function($scope, $element, $window, safeMessage, safeDisplayName, $compile, $filter, translation, mediaStream) {
@@ -29,6 +29,7 @@ define(['angular', 'jquery', 'underscore', 'moment', 'text!partials/fileinfo.htm
 		$scope.inputElement = $element.find(".input");
 		$scope.bodyElement = $element.find(".chatbody");
 		$scope.menuElement = $element.find(".chatmenu");
+		$scope.bMarkdown = false;
 		var lastSender = null;
 		var lastDate = null;
 		var lastMessageContainer = null;
@@ -39,6 +40,46 @@ define(['angular', 'jquery', 'underscore', 'moment', 'text!partials/fileinfo.htm
 		var p2p = false;
 		var scrollAfterInput = false;
 
+		function MsgQueue(size) {
+			var items = [];
+			var curpeekpos = 0;
+			this.enqueue = function(element) {
+				if(items.length > size) {
+					this.dequeue();
+				}
+				for(var i = 0, len = items.length; i < len; i++){
+					if(items[i] == element){
+						items.splice(i,1);
+					}
+				}
+				items.push(element);
+				curpeekpos = items.length;
+			}
+			this.dequeue = function() {
+				return items.shift();
+			}
+			this.front = function() {
+				return items[0];
+			}
+			this.isEmpty = function() {
+				return items.length == 0;
+			}
+			this.size = function() {
+				return items.length;
+			}
+			this.print = function() {
+				return items.toString();
+			}
+			this.peeklast = function() {
+				curpeekpos = Math.min(Math.max(0, --curpeekpos), items.length - 1);
+				return items[curpeekpos];
+			}
+			this.peeknext = function() {
+				curpeekpos = Math.min(Math.max(0, ++curpeekpos), items.length - 1);
+				return items[curpeekpos];
+			}
+		}
+		var msgs = new MsgQueue(20);
 		// Mark seen on several events.
 		$scope.bodyElement.on("mouseover mouseenter touchstart", _.debounce(function(event) {
 			$scope.$parent.seen();
@@ -152,6 +193,33 @@ define(['angular', 'jquery', 'underscore', 'moment', 'text!partials/fileinfo.htm
 			}
 		});
 
+		
+		// Bind to inputElement keydown event
+		$scope.inputElement.on("keydown", function(e) {	 
+			var UP = 38;
+			var DOWN = 40;
+			var ENTER = 13; 
+			if(e.altKey && e.keyCode == ENTER) {
+				$scope.input = $scope.input + "\n";
+				$scope.$apply();
+			}
+			//enter
+			else if(e.keyCode == ENTER) {
+				$scope.submit();
+				event.preventDefault();
+			}
+			else if(e.keyCode == UP) {
+				$scope.input = msgs.peeklast();
+				$scope.$apply();
+			}
+			else if(e.keyCode == DOWN) {
+				$scope.input = msgs.peeknext();
+				$scope.$apply();
+			}
+		});
+		
+
+
 		$scope.$watch("input", function(newvalue) {
 
 			$scope.$parent.seen();
@@ -176,6 +244,10 @@ define(['angular', 'jquery', 'underscore', 'moment', 'text!partials/fileinfo.htm
 
 		});
 
+		$scope.markdown = function() {
+			$scope.bMarkdown = !$scope.bMarkdown;
+		}
+
 		$scope.reset = function() {
 			$scope.input = "";
 			isTyping = false;
@@ -187,6 +259,11 @@ define(['angular', 'jquery', 'underscore', 'moment', 'text!partials/fileinfo.htm
 		};
 
 		$scope.submit = function() {
+			msgs.enqueue($scope.input);
+			if($scope.bMarkdown)
+			{
+				$scope.input = markdown().render($scope.input);
+			}
 			var input = $scope.input;
 			if (input) {
 				scrollAfterInput = true;
@@ -220,9 +297,6 @@ define(['angular', 'jquery', 'underscore', 'moment', 'text!partials/fileinfo.htm
 			var element;
 			var scroll = this.canScroll();
 			lastMessageContainer = null;
-			if (angular.isString(s)) {
-				s = safeMessage(s);
-			}
 
 			if (!extra_css) {
 				extra_css = "";
@@ -354,32 +428,64 @@ define(['angular', 'jquery', 'underscore', 'moment', 'text!partials/fileinfo.htm
 				showTitleAndPicture(from, msg, is_self);
 			}
 
-			var strMessage = s.join(" ");
-
-			if (!is_new_message) {
-				var element = this.append(strMessage, nodes);
-				if (element) {
-					return element;
+			var strMessage = s.join(" ");	
+			var element = null;
+			do{
+				if (!is_new_message) {
+					element = this.append(strMessage, nodes);
+					if (element) {
+						break;
+						//return element;
+					}
+					showTitleAndPicture();
 				}
-				showTitleAndPicture();
-			}
-
-			if (is_self) {
-				msg.extra_css += "is_self";
-			} else {
-				msg.extra_css += "is_remote";
-			}
-			if (timestamp) {
-				var ts = $('<div class="timestamp"/>');
-				ts.text(moment(timestamp).format("H:mm"));
-				if (nodes) {
-					nodes = nodes.add(ts);
+	
+				if (is_self) {
+					msg.extra_css += "is_self";
 				} else {
-					nodes = ts;
+					msg.extra_css += "is_remote";
 				}
-			}
-			return $scope.display(strMessage, nodes, msg.extra_css, msg.title, msg.picture);
+				if (timestamp) {
+					var ts = $('<div class="timestamp"/>');
+					ts.text(moment(timestamp).format("H:mm"));
+					if (nodes) {
+						nodes = nodes.add(ts);
+					} else {
+						nodes = ts;
+					}
+				}
+				element = $scope.display(strMessage, nodes, msg.extra_css, msg.title, msg.picture);
 
+			}while(0);
+			
+		//	if (document.body.querySelector('math')) {
+			if (strMessage.indexOf("$") != -1) {
+				if (!window.MathJax) {
+					window.MathJax = {
+					  tex: {
+						inlineMath: [['$', '$'], ['\\(', '\\)']]
+					  }
+					};
+					var script = document.createElement('script');
+				    script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js';
+				    document.head.appendChild(script);
+				  }
+				MathJax.texReset();
+      			MathJax.typesetClear();
+      			MathJax.typesetPromise().catch(function (err) {
+					//
+					//  If there was an internal error, put the message into the output instead
+					//
+					//output.innerHTML = '';
+					//output.appendChild(document.createElement('pre')).appendChild(document.createTextNode(err.message));
+				  })
+				  .then(function() {
+					//
+					//  Error or not, re-enable the render button
+					//
+				  });
+			}
+			return element;
 		};
 
 		$scope.$on("seen", function() {
@@ -550,7 +656,7 @@ define(['angular', 'jquery', 'underscore', 'moment', 'text!partials/fileinfo.htm
 					if (!noop) {
 						// Default handling is to use full message with security in place.
 						if (message === null && nodes === null && data.Message && typeof data.Message == "string") {
-							message = data.Message;
+							message = safeMessage(data.Message);
 						}
 						// Show the beast.
 						element = $scope.showmessage(from, timestamp, message, nodes);

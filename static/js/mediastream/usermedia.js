@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webrtc.adapter'], function($, _, AudioContext, DummyStream, adapter) {
+define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webrtc-adapter'], function($, _, AudioContext, DummyStream, adapter) {
 
 	// Create AudioContext singleton, if supported.
 	var context = AudioContext ? new AudioContext() : null;
@@ -88,12 +88,7 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 	// Adapter to support navigator.mediaDevices API.
 	// http://w3c.github.io/mediacapture-main/getusermedia.html#mediadevices
 	var getUserMedia = (function() {
-		if (adapter.browserDetails.browser === "chrome" ||
-			(adapter.browserDetails.browser === "firefox" && adapter.browserDetails.version < 38)) {
-
-			// Use existing adapter.
-			return navigator.getUserMedia;
-		} else {
+		//if (window.webrtcDetectedBrowser === "firefox"&& window.webrtcDetectedVersion >= 38) {
 			console.info("Enabled mediaDevices adapter ...");
 			return function(constraints, success, error) {
 				// Full constraints syntax with plain values and ideal-algorithm supported in FF38+.
@@ -103,53 +98,29 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 				var c = {audio: convertConstraints(constraints.audio), video: convertConstraints(constraints.video)};
 				// mediaDevices API returns a promise.
 				console.log("Constraints for mediaDevices", c);
-				window.navigator.mediaDevices.getUserMedia(c).then(success).catch(function(err) {
-					if (!navigator.mediaDevices.enumerateDevices) {
-						// Don't know how to check for available devices.
-						error(err);
-						return;
-					}
-
-					// gUM fails if one of audio/video is not available, check which devices are
-					// available and retry with updated constraints.
-					console.log("getUserMedia with audio/video contraints failed", err);
-					navigator.mediaDevices.enumerateDevices().then(function(devices) {
-						var has_audio = false;
-						var has_video = false;
-						console.log("Available devices", devices);
-						_.each(devices, function(device) {
-							switch (device.kind) {
-								case "audioinput":
-									has_audio = true;
-									break;
-								case "videoinput":
-									has_video = true;
-									break;
-								default:
-									break;
-							}
-						});
-						if (!has_audio && !has_video) {
-							// No audio or video device found, no need to retry gUM.
-							error(err);
-							return;
-						}
-
-						if (!has_audio) {
-							delete c.audio;
-						}
-						if (!has_video) {
-							delete c.video;
-						}
-						console.log("Retry getUserMedia with updated constraints", c);
-						window.navigator.mediaDevices.getUserMedia(c).then(success).catch(error);
-					}).catch(function(devicesError) {
-						console.log("Could not enumerate devices", devicesError);
-						// Fail initial gUM
-						error(err);
-					});
-				});
+				window.navigator.mediaDevices.getUserMedia(c).then(success).catch(error);
 			}
+	//	} 
+		/*else {
+			// Use existing adapter.
+			return window.getUserMedia;
+		}*/
+	})();
+
+	var getDisplayUserMedia = (function() {
+
+		if (navigator.getDisplayMedia) {
+			return function(constraints, success, error){
+				constraints = {video: true};
+				navigator.getDisplayMedia(constraints).then(success).catch(error);
+			}
+		} else if (navigator.mediaDevices.getDisplayMedia) {
+			return function(constraints, success, error){
+				constraints = {video: true};
+				navigator.mediaDevices.getDisplayMedia(constraints).then(success).catch(error);
+			}
+		} else {
+			return getUserMedia;
 		}
 	})();
 
@@ -161,7 +132,7 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 				_.each(tracks, function(t) {
 					t.stop();
 				});
-				if (adapter.browserDetails.browser === "firefox" && adapter.browserDetails.version < 44) {
+				if (window.webrtcDetectedBrowser === "firefox" && window.webrtcDetectedVersion < 44) {
 					// Always call stop for older Firefox < 44 to make sure gUM is correctly cleaned up.
 					// https://bugzilla.mozilla.org/show_bug.cgi?id=1192170
 					if (stream.stop) {
@@ -310,17 +281,15 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 	UserMedia.getUserMedia = getUserMedia;
 	UserMedia.stopUserMediaStream = stopUserMediaStream;
 
-	UserMedia.prototype.doGetUserMedia = function(currentcall, mediaConstraints) {
+	UserMedia.prototype.doGetUserMedia = function(currentcall, mediaConstraints, isDisplay) {
 
 		if (!mediaConstraints) {
 			mediaConstraints = currentcall.mediaConstraints;
 		}
-
-		return this.doGetUserMediaWithConstraints(mediaConstraints);
-
+		return this.doGetUserMediaWithConstraints(mediaConstraints, isDisplay);
 	};
 
-	UserMedia.prototype.doGetUserMediaWithConstraints = function(mediaConstraints) {
+	UserMedia.prototype.doGetUserMediaWithConstraints = function(mediaConstraints, isDisplay) {
 
 		if (!mediaConstraints) {
 			mediaConstraints = this.mediaConstraints;
@@ -357,7 +326,13 @@ define(['jquery', 'underscore', 'audiocontext', 'mediastream/dummystream', 'webr
 		try {
 			console.log('Requesting access to local media with mediaConstraints:\n' +
 				'  \'' + JSON.stringify(constraints) + '\'', constraints);
-			getUserMedia(constraints, _.bind(this.onUserMediaSuccess, this), _.bind(this.onUserMediaError, this));
+			if(isDisplay){
+				getDisplayUserMedia(constraints, _.bind(this.onUserMediaSuccess, this), _.bind(this.onUserMediaError, this));
+			}
+			else{
+				getUserMedia(constraints, _.bind(this.onUserMediaSuccess, this), _.bind(this.onUserMediaError, this));
+			}
+			 	
 			this.started = true;
 			return true;
 		} catch (e) {

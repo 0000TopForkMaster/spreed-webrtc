@@ -8,27 +8,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Spreed WebRTC 1.0\n"
 "Report-Msgid-Bugs-To: simon@struktur.de\n"
-"POT-Creation-Date: 2016-08-18 18:21+0200\n"
+"POT-Creation-Date: 2016-02-17 14:15+0100\n"
 "PO-Revision-Date: 2014-05-21 09:54+0800\n"
 "Last-Translator: Michael P.\n"
+"Language: zh_CN\n"
 "Language-Team: Curt Frisemo <curt.frisemo@spreed.com>\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Generated-By: Babel 2.7.0\n"
 
 msgid "Standard view"
-msgstr ""
+msgstr "标准视图"
 
 msgid "Large view"
-msgstr ""
+msgstr "大视图"
 
 msgid "Kiosk view"
-msgstr ""
+msgstr "全屏模式"
 
 msgid "Auditorium"
-msgstr ""
+msgstr "会场模式"
 
 msgid "Start chat"
 msgstr "开始聊天"
@@ -40,46 +41,44 @@ msgid "Start audio conference"
 msgstr "开始语音会议"
 
 msgid "No one else here"
-msgstr ""
+msgstr "无人"
 
 msgid "Take"
-msgstr ""
+msgstr "拍照"
 
 msgid "Retake"
-msgstr ""
+msgstr "重拍"
 
 msgid "Cancel"
 msgstr "取消"
 
 msgid "Set as Profile Picture"
-msgstr ""
+msgstr "设置为头像"
 
 msgid "Take picture"
 msgstr "拍照"
 
-#, fuzzy
 msgid "Upload picture"
-msgstr "您的图片"
+msgstr "上传图片"
 
 msgid "Waiting for camera"
 msgstr "等待启动摄像头"
 
-#, fuzzy
 msgid "Picture"
-msgstr "您的图片"
+msgstr "图片"
 
 msgid "The file couldn't be read."
-msgstr ""
+msgstr "文件读取失败"
 
 msgid "The file is not an image."
-msgstr ""
+msgstr "文件不是图片"
 
 #, python-format
 msgid "The file is too large. Max. %d MB."
-msgstr ""
+msgstr "文件过大.最大支持. %d MB."
 
 msgid "Select file"
-msgstr ""
+msgstr "选择文件"
 
 msgid "Chat sessions"
 msgstr "会话"
@@ -93,16 +92,14 @@ msgstr "P2P"
 msgid "Close chat"
 msgstr "关闭聊天"
 
-#, fuzzy
 msgid "Upload files"
-msgstr "下载失败"
+msgstr "上传文件"
 
 msgid "Share my location"
-msgstr ""
+msgstr "分享位置"
 
-#, fuzzy
 msgid "Clear chat"
-msgstr "开始聊天"
+msgstr "清空"
 
 msgid "is typing..."
 msgstr "正在输入..."
@@ -117,36 +114,36 @@ msgid "Send"
 msgstr "发送"
 
 msgid "Accept"
-msgstr ""
+msgstr "接受"
 
 msgid "Reject"
 msgstr "拒绝"
 
 msgid "You have no contacts."
-msgstr ""
+msgstr "你没有联系人"
 
 msgid ""
 "To add new contacts, join a room and create a contact add request by "
 "clicking on the star icon next to a user entry."
-msgstr ""
+msgstr "加入会议室后，点击用户来添加联系人"
 
 msgid "Edit contact"
-msgstr ""
+msgstr "编辑"
 
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 msgid "Name"
 msgstr "名字"
 
 msgid "Remove"
-msgstr ""
+msgstr "删除"
 
 msgid "Refresh"
-msgstr ""
+msgstr "刷新"
 
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 msgid "Close"
 msgstr "关闭"
@@ -173,10 +170,10 @@ msgid "Download failed."
 msgstr "下载失败"
 
 msgid "Share a YouTube video"
-msgstr ""
+msgstr "分享油管视频"
 
 msgid "Share a file as presentation"
-msgstr ""
+msgstr "分享文件"
 
 msgid "Share your screen"
 msgstr "共享您的屏幕"
@@ -185,7 +182,7 @@ msgid "Chat"
 msgstr "聊天"
 
 msgid "Contacts"
-msgstr ""
+msgstr "联系人"
 
 msgid "Mute microphone"
 msgstr "关闭麦克风"
@@ -197,30 +194,30 @@ msgid "Settings"
 msgstr "系统设置"
 
 msgid "Loading presentation ..."
-msgstr ""
+msgstr "加载"
 
 msgid "Please upload a document"
-msgstr ""
+msgstr "请上传文件"
 
 msgid ""
 "Documents are shared with everyone in this call. The supported file types"
 " are PDF and OpenDocument files."
-msgstr ""
+msgstr "与所有与会人分享文件。仅支持PDF"
 
 msgid "Upload"
-msgstr ""
+msgstr "上传"
 
 msgid "You can drag files here too."
-msgstr ""
+msgstr "请拖动到这里"
 
 msgid "Presentation controls"
-msgstr ""
+msgstr "演示控制"
 
 msgid "Prev"
-msgstr ""
+msgstr "上一页"
 
 msgid "Next"
-msgstr ""
+msgstr "下一页"
 
 msgid "Change room"
 msgstr "更换房间"
@@ -243,43 +240,40 @@ msgstr "屏幕共享设置"
 msgid "Fit screen."
 msgstr "适合屏幕"
 
-#, fuzzy
 msgid "Share screen"
 msgstr "共享您的屏幕"
 
 msgid "Please select what to share."
-msgstr ""
+msgstr "请选择分享内容"
 
-#, fuzzy
 msgid "Screen"
 msgstr "适合屏幕"
 
 msgid "Window"
-msgstr ""
+msgstr "窗口"
 
 msgid "Application"
-msgstr ""
+msgstr "应用"
 
 msgid "Share the whole screen. Click share to select the screen."
-msgstr ""
+msgstr "分享整个屏幕"
 
 msgid "Share a single window. Click share to select the window."
-msgstr ""
+msgstr "分享单个窗口"
 
 msgid ""
 "Share all windows of a application. This can leak content behind windows "
 "when windows get moved. Click share to select the application."
-msgstr ""
+msgstr "分享所有窗口"
 
-#, fuzzy
 msgid "Share"
-msgstr "停止分享"
+msgstr "分享"
 
 msgid "OK"
-msgstr ""
+msgstr "确定"
 
 msgid "Profile"
-msgstr ""
+msgstr "个人信息"
 
 msgid "Your name"
 msgstr "您的名字"
@@ -288,38 +282,41 @@ msgid "Your picture"
 msgstr "您的图片"
 
 msgid "Status message"
-msgstr ""
+msgstr "状态信息"
 
 msgid "What's on your mind?"
-msgstr ""
+msgstr "这家伙很懒，什么都没留"
 
 msgid ""
 "Your picture, name and status message identify yourself in calls, chats "
 "and rooms."
-msgstr ""
+msgstr "你的头像，名字和状态信息会显示在呼叫和聊天中"
 
 msgid "Your ID"
-msgstr ""
+msgstr "你的ID"
+
+msgid "Register"
+msgstr "注册"
 
 msgid ""
 "Authenticated by certificate. To log out you have to remove your "
 "certificate from the browser."
-msgstr ""
+msgstr "已通过证书认证，登出时，请去除你的证书"
 
 msgid "Sign in"
-msgstr ""
+msgstr "登陆"
 
 msgid "Create an account"
-msgstr ""
+msgstr "创建账号"
 
 msgid "Sign out"
-msgstr ""
+msgstr "登出"
 
 msgid "Manage account"
-msgstr ""
+msgstr "管理账号"
 
 msgid "Media"
-msgstr ""
+msgstr "媒体"
 
 msgid "Microphone"
 msgstr "麦克风"
@@ -340,10 +337,10 @@ msgid "HD"
 msgstr "高清"
 
 msgid "Full HD"
-msgstr ""
+msgstr "全高清"
 
 msgid "General"
-msgstr ""
+msgstr "通用"
 
 msgid "Language"
 msgstr "语言"
@@ -357,9 +354,8 @@ msgstr "系统默认房间"
 msgid "Set alternative room to join at start."
 msgstr "重设初始默认房间"
 
-#, fuzzy
 msgid "Notifications"
-msgstr "桌面提醒"
+msgstr "提醒"
 
 msgid "Desktop notification"
 msgstr "桌面提醒"
@@ -374,29 +370,28 @@ msgid "Allowed"
 msgstr "启用"
 
 msgid "Sounds for incoming messages"
-msgstr ""
+msgstr "消息提醒声音"
 
-#, fuzzy
 msgid "Ring on incoming calls"
-msgstr "来电"
+msgstr "来电响铃"
 
 msgid "Sounds for users in current room"
-msgstr ""
+msgstr "房间新进用户声音"
 
 msgid "Advanced settings"
 msgstr "高级设置"
 
 msgid "Play audio on same device as selected microphone"
-msgstr ""
+msgstr "在同样设备播放音频"
 
 msgid "Experimental AEC"
-msgstr ""
+msgstr "实验AEC"
 
 msgid "Experimental AGC"
-msgstr ""
+msgstr "实验AGC"
 
 msgid "Experimental noise suppression"
-msgstr ""
+msgstr "实验降噪"
 
 msgid "Max video frame rate"
 msgstr "最大视频帧速率"
@@ -404,7 +399,6 @@ msgstr "最大视频帧速率"
 msgid "auto"
 msgstr "自动"
 
-#, fuzzy
 msgid "Send stereo audio"
 msgstr "立体声"
 
@@ -414,22 +408,22 @@ msgid ""
 msgstr ""
 
 msgid "Detect CPU over use"
-msgstr ""
+msgstr "检测CPU使用率"
 
 msgid "Automatically reduces video quality as needed."
-msgstr ""
+msgstr "自动降低视频质量"
 
 msgid "Optimize for high resolution video"
-msgstr ""
+msgstr "视频高分辨率优化"
 
 msgid "Reduce video noise"
-msgstr ""
+msgstr "视频降噪"
 
 msgid "Prefer VP9 video codec"
-msgstr ""
+msgstr "优选VP9"
 
 msgid "Enable experiments"
-msgstr ""
+msgstr "打开实验特性"
 
 msgid "Show advanced settings"
 msgstr "展开高级设置"
@@ -443,29 +437,28 @@ msgstr "记住设置"
 msgid ""
 "Your ID will still be kept - press the log out button above to delete the"
 " ID."
-msgstr ""
+msgstr "你的ID仍然会被记录-点击登出上面按钮来删除ID"
 
 msgid "Room PIN"
 msgstr ""
 
 msgid "Room link"
-msgstr ""
+msgstr "会议室链接"
 
-#, fuzzy
 msgid "Invite by Email"
-msgstr "电子邮件共享"
+msgstr "电子邮件邀请"
 
 msgid "Invite with Facebook"
-msgstr ""
+msgstr "通过facebook邀请"
 
 msgid "Invite with Twitter"
-msgstr ""
+msgstr "通过Twitter邀请"
 
 msgid "Invite with Google Plus"
-msgstr ""
+msgstr "通过Google Plus邀请"
 
 msgid "Invite with XING"
-msgstr ""
+msgstr "通过XING邀请"
 
 msgid "Initializing"
 msgstr "初始化"
@@ -480,10 +473,10 @@ msgid "Hangup"
 msgstr "挂断"
 
 msgid "In call with"
-msgstr "正在和**通话"
+msgstr "通话对象"
 
 msgid "Conference with"
-msgstr "和**会议通话"
+msgstr "与会对象"
 
 msgid "Your are offline"
 msgstr "您不在线"
@@ -536,25 +529,24 @@ msgid "Please set your user details and settings."
 msgstr "请设定您的用户信息及设置"
 
 msgid "Enter a room name"
-msgstr ""
+msgstr "请输入会议室名字"
 
 msgid "Random room name"
-msgstr ""
+msgstr "随机名字"
 
-#, fuzzy
 msgid "Enter room"
-msgstr "當前房间"
+msgstr "进入会议室"
 
 msgid ""
 "Enter the name of an existing room. You can create new rooms when you are"
 " signed in."
-msgstr ""
+msgstr "输入一个会议室名字，当你登陆时你可以创建一个新会议室"
 
 msgid "Room history"
-msgstr ""
+msgstr "会议室历时"
 
 msgid "Please sign in."
-msgstr ""
+msgstr "请登录"
 
 msgid "Videos play simultaneously for everyone in this call."
 msgstr ""
@@ -595,40 +587,40 @@ msgid "Incoming file:"
 msgstr "发来文件："
 
 msgid "You shared your location:"
-msgstr ""
+msgstr "分享位置"
 
 msgid "Location received:"
-msgstr ""
+msgstr "收到位置："
 
 msgid "You accepted the contact request."
-msgstr ""
+msgstr "你接受了联系人请求"
 
 msgid "You rejected the contact request."
-msgstr ""
+msgstr "你拒绝了联系人请求"
 
 msgid "You sent a contact request."
-msgstr ""
+msgstr "你的联系人请求已发送"
 
 msgid "Your contact request was accepted."
-msgstr ""
+msgstr "你的联系人请求已通过"
 
 msgid "Incoming contact request."
-msgstr ""
+msgstr "新的联系人请求"
 
 msgid "Your contact request was rejected."
-msgstr ""
+msgstr "你的联系人请求被拒绝"
 
 msgid "Edit Contact"
-msgstr ""
+msgstr "编辑联系人"
 
 msgid "Your browser does not support WebRTC. No calls possible."
 msgstr "您的浏览器不支持WebRTC。不能进行通话。"
 
 msgid "Close this window and disconnect?"
-msgstr ""
+msgstr "关闭窗口，断开呼叫？"
 
 msgid "Contacts Manager"
-msgstr ""
+msgstr "联系人管理"
 
 msgid "Restart required to apply updates. Click ok to restart now."
 msgstr "适用更新需重启，现在点击Ok重新启动。"
@@ -660,23 +652,20 @@ msgstr " 拒绝了您的呼叫。"
 msgid " does not pick up."
 msgstr " 无人接听。"
 
-#, fuzzy
 msgid " tried to call you"
 msgstr " 曾呼叫您。"
 
-#, fuzzy
 msgid " called you"
 msgstr " 曾与您通话。"
 
-#, fuzzy
 msgid "Your browser is not supported. Please upgrade to a current version."
-msgstr "您的浏览器不支持文件传输"
+msgstr "请升级浏览器版本"
 
 msgid "Chat with"
-msgstr "与**聊天"
+msgstr "聊天对象"
 
 msgid "Message from "
-msgstr "来自于**的信息"
+msgstr "您有新的消息，来自于"
 
 #, python-format
 msgid "You are now in room %s ..."
@@ -745,7 +734,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Room name"
-msgstr "您的名字"
+msgstr "会议名字"
 
 msgid ""
 "The request contains an invalid parameter value. Please check the URL of "
@@ -817,18 +806,18 @@ msgstr "接入码认证失败。请检查您的网络连接并重试。"
 
 #, python-format
 msgid "PIN for room %s is now '%s'."
-msgstr ""
+msgstr "会议室 %s 的密码为 '%s'."
 
 #, python-format
 msgid "PIN lock has been removed from room %s."
-msgstr ""
+msgstr "会议室 %s的密码已去除"
 
 #, python-format
 msgid "Enter the PIN for room %s"
-msgstr ""
+msgstr "请输入会议室 %s 的密码"
 
 msgid "Please sign in to create rooms."
-msgstr ""
+msgstr "请登陆"
 
 #, python-format
 msgid "and %s"

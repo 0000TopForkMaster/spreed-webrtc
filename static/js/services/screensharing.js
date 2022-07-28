@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['underscore', 'text!partials/screensharedialogff.html', 'webrtc.adapter'], function(_, screenshareDialogFF, adapter) {
+define(['underscore', 'text!partials/screensharedialogff.html', 'webrtc-adapter'], function(_, screenshareDialogFF, adapter) {
 
 	var screenshareDialogFFController = ["$scope", "$modalInstance", "data", function($scope, $modalInstance, data) {
 		$scope.data = data;
@@ -57,8 +57,8 @@ define(['underscore', 'text!partials/screensharedialogff.html', 'webrtc.adapter'
 			// Chrome support.
 			if (adapter.browserDetails.browser === "chrome") {
 
-				if (adapter.browserDetails.version >= 32 &&
-					adapter.browserDetails.version < 37) {
+				if (adapter.browserDetails.version >= 32 ){//&&
+					//adapter.browserDetails.version < 37) {
 					// Support for flag based developer screen sharing came in Chrome 32.
 					// It was removed in Chrome 37 in favour of chrome.chooseDesktopMedia
 					// https://code.google.com/p/chromium/issues/detail?id=347641
@@ -74,11 +74,11 @@ define(['underscore', 'text!partials/screensharedialogff.html', 'webrtc.adapter'
 						d.resolve(opts);
 						return d.promise;
 					};
-				} else if (adapter.browserDetails.version >= 37) {
+				} //else if (adapter.browserDetails.version >= 37) {
 					// We need a extension to support screen sharing. See
 					// https://developer.chrome.com/extensions/desktopCapture#method-chooseDesktopMedia
 					// for details.
-				}
+				//}
 
 				if (chromeExtension.available) {
 

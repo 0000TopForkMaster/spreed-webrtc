@@ -20,8 +20,7 @@
  */
 
 "use strict";
-define(['jquery', 'underscore', 'webrtc.adapter'], function($, _, adapter) {
-	console.log('xxx adapter', adapter, adapter.browserDetails);
+define(['jquery', 'underscore', 'webrtc-adapter'], function($, _) {
 
 	var count = 0;
 	var dataChannelDefaultLabel = "default";
@@ -82,7 +81,7 @@ define(['jquery', 'underscore', 'webrtc.adapter'], function($, _, adapter) {
 			// not support this and thus both are not compatible. For the time being this means
 			// that renegotiation does not work between Firefox and Chrome. Even worse, current
 			// spec says that the event should really be named ontrack.
-			if (adapter.browserDetails.browser === "firefox") {
+			if (window.webrtcDetectedBrowser === "firefox") {
 				// NOTE(longsleep): onnegotiationneeded is not supported by Firefox < 38.
 				// Also firefox does not care about streams, but has the newer API for tracks
 				// implemented. This does not work together with Chrome, so we trigger negotiation
@@ -114,23 +113,18 @@ define(['jquery', 'underscore', 'webrtc.adapter'], function($, _, adapter) {
 				});
 			}, this);
 
+			// Create default data channel when we are in initiate mode.
 			if (currentcall.initiate) {
-				// Create default data channel when we are in initiate mode.
-				switch (adapter.browserDetails.browser) {
-				case "edge":
-					// Edge does not support data channels for now.
-					break;
-				case "chrome":
-					if (window.webrtcDetectedAndroid && adapter.browserDetails.version < 34) {
-						// Chrome 32 on Android has broken SCTP data channels. See https://code.google.com/p/webrtc/issues/detail?id=2253
-						break;
-					}
-					/* falls through */
-				default:
+				if (window.webrtcDetectedBrowser !== "chrome" || !window.webrtcDetectedAndroid || (window.webrtcDetectedBrowser === "chrome" && window.webrtcDetectedVersion >= 33)) {
+					// NOTE(longsleep): Android (Chrome 32) does have broken SCTP data channels
+					// which makes connection fail because of sdp set error for answer/offer.
+					// See https://code.google.com/p/webrtc/issues/detail?id=2253 Lets hope the
+					// crap gets fixed with Chrome on Android 33. For now disable SCTP in flags
+					// on Adroid to be able to accept offers with SCTP in it.
+					// chrome://flags/#disable-sctp-data-channels
 					this.createDatachannel(dataChannelDefaultLabel, {
 						ordered: true
 					});
-					break;
 				}
 			}
 
@@ -353,7 +347,7 @@ define(['jquery', 'underscore', 'webrtc.adapter'], function($, _, adapter) {
 		if (!this.pc) {
 			return [];
 		}
-		return this.pc.getLocalStreams.apply(this.pc, arguments);
+		return this.pc.getRemoteStreams.apply(this.pc, arguments);
 
 	};
 

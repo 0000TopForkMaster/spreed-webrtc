@@ -25,7 +25,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/strukturag/spreed-webrtc/go/channelling"
+	"go/channelling"
 )
 
 func NewTestRoomManager() (RoomManager, *Config) {

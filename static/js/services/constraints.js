@@ -20,7 +20,7 @@
  */
 
 "use strict";
- define(["jquery", "underscore", "webrtc.adapter"], function($, _, adapter) {
+ define(["jquery", "underscore", "webrtc-adapter"], function($, _, adapter) {
 
 	// constraints
 	return ["webrtc", "$window", "$q", function(webrtc, $window, $q) {
@@ -193,7 +193,6 @@
 				var isChrome = adapter.browserDetails.browser === "chrome";
 				var isFirefox = adapter.browserDetails.browser === "firefox";
 				var isEdge = adapter.browserDetails.browser === "edge";
-				var isSafari = adapter.browserDetails.browser === "safari";
 				var version = adapter.browserDetails.version;
 				// Constraints support table.
 				return {
@@ -206,8 +205,7 @@
 					vp9: isChrome && version >= 48,
 					chrome: isChrome,
 					firefox: isFirefox,
-					edge: isEdge,
-					safari: isSafari
+					edge: isEdge
 				};
 			})()
 		};

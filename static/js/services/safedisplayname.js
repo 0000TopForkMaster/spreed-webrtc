@@ -28,7 +28,8 @@ define([], function() {
 		var displayName = $filter("displayName");
 		return function() {
 			var s = displayName.apply(this, arguments);
-			return safeMessage(s);
+			return s;
+			//return safeMessage(s);
 		}
 
 	}];

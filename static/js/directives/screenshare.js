@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(['jquery', 'underscore', 'text!partials/screenshare.html', 'text!partials/screensharepeer.html', 'bigscreen', 'webrtc.adapter'], function($, _, template, templatePeer, BigScreen, adapter) {
+define(['jquery', 'underscore', 'text!partials/screenshare.html', 'text!partials/screensharepeer.html', 'bigscreen', 'webrtc-adapter'], function($, _, template, templatePeer, BigScreen, adapter) {
 
 	return ["$window", "mediaStream", "$compile", "safeApply", "videoWaiter", "$timeout", "alertify", "translation", "screensharing", function($window, mediaStream, $compile, safeApply, videoWaiter, $timeout, alertify, translation, screensharing) {
 
@@ -181,21 +181,8 @@ define(['jquery', 'underscore', 'text!partials/screenshare.html', 'text!partials
 						$scope.stopScreenshare();
 					}
 				}, function(err) {
-					var errMsg = '';
-					var errCode = '';
-					if (err && err.detail) {
-						errMsg = err.detail;
-						errCode = err.errorCode;
-					} else {
-						errMsg = err;
-					}
-					console.log("Screen sharing request returned error", errMsg);
-					// Do not display error dialog when user cancelled action of
-					// chrome extension installation
-					// https://developer.chrome.com/extensions/webstore#type-ErrorCode
-					if (errCode !== 'userCancelled') {
-						alertify.dialog.alert(translation._("Failed to start screen sharing (%s).", errMsg));
-					}
+					console.log("Screen sharing request returned error", err);
+					alertify.dialog.alert(translation._("Failed to start screen sharing (%s).", err));
 					$scope.stopScreenshare();
 				});
 
@@ -292,11 +279,16 @@ define(['jquery', 'underscore', 'text!partials/screenshare.html', 'text!partials
 						switch (error.name) {
 						case "PermissionDeniedError":
 						case "InvalidStateError":
-							alertify.dialog.alert(translation._("Permission to start screen sharing was denied."));
+							if (adapter.browserDetails.version >= 32 &&
+								adapter.browserDetails.version < 37) {
+								alertify.dialog.alert(translation._("Permission to start screen sharing was denied. Make sure to have enabled screen sharing access for your browser. Copy chrome://flags/#enable-usermedia-screen-capture and open it with your browser and enable the flag on top. Then restart the browser and you are ready to go."));
+							} else {
+								alertify.dialog.alert(translation._("Permission to start screen sharing was denied."));
+							}
 							break;
 						default:
 							alertify.dialog.alert(translation._("Failed to start screen sharing (%s).", error.name));
-							break
+							break;
 						}
 					}
 				});

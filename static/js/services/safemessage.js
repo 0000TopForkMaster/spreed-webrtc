@@ -26,7 +26,9 @@ define([], function() {
 	return ["$sanitize", "enrichMessage", function($sanitize, enrichMessage) {
 
 		return function(s) {
-			return $sanitize(enrichMessage.all(s));
+			//return $sanitize(enrichMessage.all(s));
+			return $sanitize(s);
+			//return s;
 		}
 
 	}];

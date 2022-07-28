@@ -20,7 +20,7 @@
  */
 
 "use strict";
-define(["jquery", "underscore", "sha", "webrtc.adapter"], function($, _, JsSHA) {
+define(["jquery", "underscore", "sha", "webrtc-adapter"], function($, _, JsSHA) {
 
 	var requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem || null;
 	if (!requestFileSystem) {
